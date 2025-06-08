@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// Helper function to calculate final price
 const calculateFinalPrice = (priceBeforeVat, vat) => {
   return (priceBeforeVat + vat).toFixed(2);
 };
@@ -19,11 +18,11 @@ export const useSkips = () => {
         }
         const data = await response.json();
 
-        // Calculate final price and add isPopular flag
+       
         const transformedSkips = data.map(skip => ({
           ...skip,
           finalPrice: calculateFinalPrice(skip.price_before_vat, skip.vat),
-          isPopular: skip.size === 6 // Mark 6-yard skip as popular
+          isPopular: skip.size === 6 
         }));
 
         setSkips(transformedSkips);
