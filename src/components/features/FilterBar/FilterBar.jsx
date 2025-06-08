@@ -58,7 +58,6 @@ const FilterBar = ({
 }) => {
   const [showSizeGuide, setShowSizeGuide] = useState(false);
 
-
   useEffect(() => {
     if (showSizeGuide) {
       document.body.style.overflow = 'hidden';
@@ -66,7 +65,6 @@ const FilterBar = ({
       document.body.style.overflow = 'unset';
     }
 
-   
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -76,12 +74,12 @@ const FilterBar = ({
     <>
       <div className="bg-white rounded-xl shadow p-6 mb-10 flex flex-col md:flex-row md:items-center md:justify-between border border-gray-100">
         <div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full md:w-auto">
-          {}
+          {/* Road Placement Filter */}
           <div>
             <label className="block text-black font-bold mb-1">Road Placement</label>
             <div className="relative">
               <select
-                className="border rounded-lg px-3 py-2 w-full md:w-auto bg-gray-100 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="border rounded-lg px-3 py-2 w-full md:w-auto bg-gray-100 text-gray-900 appearance-none focus:outline-none hover:border-orange-400 hover:bg-orange-50 transition-all duration-200 cursor-pointer"
                 value={roadPlacement}
                 onChange={e => setRoadPlacement(e.target.value)}
               >
@@ -94,12 +92,12 @@ const FilterBar = ({
               </div>
             </div>
           </div>
-          {}
+          {/* Heavy Waste Filter */}
           <div>
             <label className="block text-black font-bold mb-1">Heavy Waste</label>
             <div className="relative">
               <select
-                className="border rounded-lg px-3 py-2 w-full md:w-auto bg-gray-100 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="border rounded-lg px-3 py-2 w-full md:w-auto bg-gray-100 text-gray-900 appearance-none focus:outline-none hover:border-orange-400 hover:bg-orange-50 transition-all duration-200 cursor-pointer"
                 value={heavyWaste}
                 onChange={e => setHeavyWaste(e.target.value)}
               >
@@ -112,12 +110,12 @@ const FilterBar = ({
               </div>
             </div>
           </div>
-          {}
+          {/* Size Range Filter */}
           <div>
             <label className="block text-black font-bold mb-1">Size Range</label>
             <div className="relative">
               <select
-                className="border rounded-lg px-3 py-2 w-full md:w-auto bg-gray-100 text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="border rounded-lg px-3 py-2 w-full md:w-auto bg-gray-100 text-gray-900 appearance-none focus:outline-none hover:border-orange-400 hover:bg-orange-50 transition-all duration-200 cursor-pointer"
                 value={sizeRange}
                 onChange={e => setSizeRange(e.target.value)}
               >
@@ -144,11 +142,11 @@ const FilterBar = ({
         </div>
       </div>
 
-      {}
+      {/* Size Guide Modal */}
       {showSizeGuide && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl">
-            {}
+            {/* Header */}
             <div className="bg-orange-500 text-white p-4 relative">
               <button
                 onClick={() => setShowSizeGuide(false)}
@@ -160,7 +158,7 @@ const FilterBar = ({
               <h2 className="text-xl font-bold">Size Guide</h2>
             </div>
 
-            {}
+            {/* Content */}
             <div className="p-4 sm:p-6 overflow-y-auto max-h-[calc(90vh-80px)]">
               <div className="space-y-3">
                 {skipSizes.map(({ size, description, bags }) => (

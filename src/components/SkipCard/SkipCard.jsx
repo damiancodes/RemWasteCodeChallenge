@@ -1,3 +1,4 @@
+
 import React from 'react';
 import skip5 from '../../assets/skip-images/5-yarder-skip.jpg';
 import skip6 from '../../assets/skip-images/6-yarder-skip.jpg';
@@ -60,11 +61,6 @@ const SkipCard = ({ skip, onSelect, darkMode }) => {
 
   return (
     <div className={`rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden relative border bg-white text-gray-900 hover:scale-[1.03]`}>
-      {isPopular && (
-        <div className="absolute top-3 right-3 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
-          Most Popular
-        </div>
-      )}
       {/* Skip Image */}
       <div className="relative w-full aspect-[4/2] bg-gray-100 overflow-hidden">
         <img
@@ -109,4 +105,3 @@ const SkipCard = ({ skip, onSelect, darkMode }) => {
 };
 
 export default SkipCard;
-
