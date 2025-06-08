@@ -109,3 +109,4 @@ const SkipCard = ({ skip, onSelect, darkMode }) => {
 };
 
 export default SkipCard;
+

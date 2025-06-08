@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
-import skip4 from '/src/assets/skip-images/4-yarder-skip.jpg';
-import skip5 from '/src/assets/skip-images/5-yarder-skip.jpg';
-import skip6 from '/src/assets/skip-images/6-yarder-skip.jpg';
-import skip8 from '/src/assets/skip-images/8-yarder-skip.jpg';
-import skip10 from '/src/assets/skip-images/10-yarder-skip.jpg';
-import skip12 from '/src/assets/skip-images/12-yarder-skip.jpg';
-import skip14 from '/src/assets/skip-images/14-yarder-skip.jpg';
-import skip16 from '/src/assets/skip-images/16-yarder-skip.jpg';
-import skip20 from '/src/assets/skip-images/20-yarder-skip.jpg';
-import skip40 from '/src/assets/skip-images/40-yarder-skip.jpg';
-import fallbackSkip from '/src/assets/skip-images/fallback-skip.png';
+import skip4 from '../../../assets/skip-images/4-yarder-skip.jpg';
+import skip5 from '../../../assets/skip-images/5-yarder-skip.jpg';
+import skip6 from '../../../assets/skip-images/6-yarder-skip.jpg';
+import skip8 from '../../../assets/skip-images/8-yarder-skip.jpg';
+import skip10 from '../../../assets/skip-images/10-yarder-skip.jpg';
+import skip12 from '../../../assets/skip-images/12-yarder-skip.jpg';
+import skip14 from '../../../assets/skip-images/14-yarder-skip.jpg';
+import skip16 from '../../../assets/skip-images/16-yarder-skip.jpg';
+import skip20 from '../../../assets/skip-images/20-yarder-skip.jpg';
+import skip40 from '../../../assets/skip-images/40-yarder-skip.jpg';
+import fallbackSkip from '../../../assets/skip-images/fallback-skip.png';
 
 const skipImages = {
   4: skip4,
@@ -33,16 +34,16 @@ const sizeRanges = [
 ];
 
 const skipSizes = [
-  { size: 4, description: 'Midi Skip, small jobs, 30-40 bin bags' },
-  { size: 5, description: 'Small-medium projects, 40-50 bin bags' },
-  { size: 6, description: 'Builders Skip, hardcore, 50-60 bin bags' },
-  { size: 8, description: 'Popular Builders Skip, hardcore, 60-80 bin bags' },
-  { size: 10, description: 'Big cleanouts, bulky waste, 80-100 bin bags' },
-  { size: 12, description: 'Maxi Skip, house/business clearouts, 100-120 bin bags' },
-  { size: 14, description: 'Large projects, commercial, 120-140 bin bags' },
-  { size: 16, description: 'Major projects, commercial, 140-160 bin bags' },
-  { size: 20, description: 'Roll-on/off, light construction, 160-200 bin bags' },
-  { size: 40, description: 'Largest, commercial, light waste, 350-400 bin bags' },
+  { size: 4, description: 'Midi Skip - small domestic jobs', bags: '30-40 bin bags' },
+  { size: 5, description: 'Small-medium projects, bathroom renovation', bags: '40-50 bin bags' },
+  { size: 6, description: 'Builders Skip - great for hardcore waste', bags: '50-60 bin bags' },
+  { size: 8, description: 'Most popular Builders Skip - hardcore waste', bags: '60-80 bin bags' },
+  { size: 10, description: 'Big cleanouts and bulky waste', bags: '80-100 bin bags' },
+  { size: 12, description: 'Maxi Skip - large house/business clear outs', bags: '100-120 bin bags' },
+  { size: 14, description: 'Large projects, shop renovation', bags: '120-140 bin bags' },
+  { size: 16, description: 'Major projects, construction work', bags: '140-160 bin bags' },
+  { size: 20, description: 'Roll-on/off - light construction & demolition', bags: '160-200 bin bags' },
+  { size: 40, description: 'Largest commercial skip - large light waste', bags: '350-400 bin bags' },
 ];
 
 const FilterBar = ({
@@ -57,11 +58,25 @@ const FilterBar = ({
 }) => {
   const [showSizeGuide, setShowSizeGuide] = useState(false);
 
+
+  useEffect(() => {
+    if (showSizeGuide) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+   
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showSizeGuide]);
+
   return (
     <>
       <div className="bg-white rounded-xl shadow p-6 mb-10 flex flex-col md:flex-row md:items-center md:justify-between border border-gray-100">
         <div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full md:w-auto">
-          {/* Road Placement Filter */}
+          {}
           <div>
             <label className="block text-black font-bold mb-1">Road Placement</label>
             <div className="relative">
@@ -79,7 +94,7 @@ const FilterBar = ({
               </div>
             </div>
           </div>
-          {/* Heavy Waste Filter */}
+          {}
           <div>
             <label className="block text-black font-bold mb-1">Heavy Waste</label>
             <div className="relative">
@@ -97,7 +112,7 @@ const FilterBar = ({
               </div>
             </div>
           </div>
-          {/* Size Range Filter */}
+          {}
           <div>
             <label className="block text-black font-bold mb-1">Size Range</label>
             <div className="relative">
@@ -119,9 +134,9 @@ const FilterBar = ({
         <div className="flex items-center gap-4 mt-4 md:mt-0">
           <span
             onClick={() => setShowSizeGuide(true)}
-            className="text-orange-500 hover:text-orange-600 font-semibold text-sm cursor-pointer"
+            className="text-orange-500 hover:text-orange-600 font-semibold text-sm cursor-pointer transition-colors"
           >
-            View Size Guide
+            Size Guide
           </span>
           <div className="text-gray-500 text-sm md:text-right">
             Showing {filteredCount} of {totalCount} skip options
@@ -129,34 +144,44 @@ const FilterBar = ({
         </div>
       </div>
 
-      {/* Size Guide Modal */}
+      {}
       {showSizeGuide && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl max-w-2xl w-full p-8 shadow-2xl border border-gray-100 relative">
-            <button
-              onClick={() => setShowSizeGuide(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold"
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <h2 className="text-2xl font-bold text-orange-500 mb-6">Skip Size Guide</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {skipSizes.map(({ size, description }) => (
-                <div key={size} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                  <img
-                    src={skipImages[size] || fallbackSkip}
-                    alt={`${size} yard skip`}
-                    className="w-20 h-16 object-contain flex-shrink-0"
-                  />
-                  <div>
-                    <div className="bg-orange-500 text-white font-bold px-3 py-1 rounded-lg inline-block text-sm mb-1">
-                      {size} yd
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl w-full max-w-md sm:max-w-lg md:max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl">
+            {}
+            <div className="bg-orange-500 text-white p-4 relative">
+              <button
+                onClick={() => setShowSizeGuide(false)}
+                className="absolute top-3 right-3 text-white hover:text-orange-200 text-xl font-bold transition-colors"
+                aria-label="Close"
+              >
+                ×
+              </button>
+              <h2 className="text-xl font-bold">Size Guide</h2>
+            </div>
+
+            {}
+            <div className="p-4 sm:p-6 overflow-y-auto max-h-[calc(90vh-80px)]">
+              <div className="space-y-3">
+                {skipSizes.map(({ size, description, bags }) => (
+                  <div key={size} className="bg-white rounded-lg p-4 flex items-center gap-4 sm:gap-6 hover:bg-gray-50 transition-colors">
+                    <img
+                      src={skipImages[size] || fallbackSkip}
+                      alt={`${size} yard skip`}
+                      className="w-20 h-16 sm:w-24 sm:h-20 object-cover rounded-lg flex-shrink-0"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="bg-orange-500 text-white font-bold px-2 py-1 sm:px-3 sm:py-1 rounded text-sm sm:text-base">
+                          {size} {size === 1 ? 'yard' : 'yards'}
+                        </div>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-sm sm:text-base mb-1">{description}</h3>
+                      <p className="text-xs sm:text-sm text-gray-600">{bags}</p>
                     </div>
-                    <p className="text-gray-700">{description}</p>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -165,4 +190,4 @@ const FilterBar = ({
   );
 };
 
-export default FilterBar; 
+export default FilterBar;
