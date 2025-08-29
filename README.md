@@ -4,6 +4,10 @@
 
 This project is a React-based web application for selecting skips, featuring a dynamic filtering system and an interactive size guide. Users can filter skips by road placement, heavy waste suitability, and size range. The application displays detailed information for each skip, including price and hire period.
 
+
+![RemWaste](https://res.cloudinary.com/duxu1eink/image/upload/v1756499821/remwaste_d4yi6x.png)
+
+
 ## Features
 
 - **Skip Filtering:** Filter skips based on Road Placement, Heavy Waste, and Size Range.
